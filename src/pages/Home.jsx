@@ -10,7 +10,6 @@ const Home = () => {
   const [isSelectOption, setIsSelectOption] = React.useState(false);
 	const [shuffledQuestions, setShuffledQuestions] = React.useState([]);
 
-	// Вынести в функцию и вызывать после окончания всех вопросов
   const correctAnswersCount = selectedAnswers.filter((answer) => answer.isCorrect).length;
 
 	React.useEffect(() => {
@@ -53,7 +52,6 @@ const Home = () => {
     setTimeout(() => {
       setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
       setIsSelectOption(false);
-      console.log(selectedAnswers);
     }, 1000);
   };
 
@@ -63,9 +61,10 @@ const Home = () => {
       <div className="results">
         {correctAnswersCount === QUESTIONS.length ? (
           <>
-            <h1 className="results__title">"Поздравляем!"</h1>
+            <h1 className="results__title">Поздравляем!</h1>
             <p className="results__description">
-              Вы ответили правильно на 5 вопросов. <br /> Так держать!
+							Вы правильно ответили на все вопросы. <br />
+							Вы действительно отлично разбираетесь в IT.
             </p>
           </>
         ) : correctAnswersCount === 0 ? (
@@ -79,8 +78,8 @@ const Home = () => {
         ) : (
           <>
             <h1 className="results__title">Хороший результат!</h1>
-            <p className="results__description">
-              Вы ответили правильно на 5 вопросов. <br /> Так держать!
+            <p className="results__description good-result">
+              Вы ответили правильно на {correctAnswersCount} вопросов. <br /> Так держать!
             </p>
           </>
         )}
@@ -94,13 +93,13 @@ const Home = () => {
                   : "results-list__item bad"
               }
             >
-              <h3>{answer.questionTitle}</h3>
-              <p>{answer.correctOption.value}</p>
+              <h3 className="results-list__item-title">{answer.questionTitle}</h3>
+              <p className="results-list__item-description">{answer.correctOption.value}</p>
             </li>
           ))}
         </ul>
 				{correctAnswersCount !== QUESTIONS.length && (
-					<button onClick={reset}>Пройти ещё раз</button>
+					<button className="results__button" onClick={reset}>Пройти ещё раз</button>
 				)}
       </div>
     );
