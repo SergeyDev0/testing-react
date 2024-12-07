@@ -3,6 +3,7 @@ import { shuffleArray } from "../utils/shuffleArray";
 import { QUESTIONS } from "../data/questions.data";
 import Question from "../components/question/Question";
 import ProgressBar from "../components/progressBar/ProgressBar";
+import Answer from "../components/answer/Answer";
 
 const Home = () => {
   const [selectedAnswers, setSelectedAnswers] = React.useState([]);
@@ -85,17 +86,7 @@ const Home = () => {
         )}
         <ul className="results-list">
           {selectedAnswers.map((answer) => (
-            <li
-              key={answer.questionId}
-              className={
-                answer.isCorrect
-                  ? "results-list__item good"
-                  : "results-list__item bad"
-              }
-            >
-              <h3 className="results-list__item-title">{answer.questionTitle}</h3>
-              <p className="results-list__item-description">{answer.correctOption.value}</p>
-            </li>
+            <Answer answer={answer} key={answer.questionId} />
           ))}
         </ul>
 				{correctAnswersCount !== QUESTIONS.length && (
