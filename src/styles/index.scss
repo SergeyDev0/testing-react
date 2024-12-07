@@ -1,0 +1,31 @@
+.questions {
+	width: 886px;
+	margin: 82px auto 85px auto;
+
+	&__title {
+		font-weight: 800;
+		font-size: 48px;
+		line-height: 59px;
+	}
+
+	&__form {
+		display: flex;
+		justify-content: center;
+		background-color: #F7F7F7;
+		border-radius: 20px;
+		padding: 45px 40px;
+		margin-top: 15px;
+		margin-bottom: 25px;
+		height: 528px;
+
+		&.selected {
+			padding: 40px;
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+	}
+
+	&-list {
+		width: 806px;
+	}
+}
